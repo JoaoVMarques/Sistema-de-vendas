@@ -1,4 +1,4 @@
-# Marques-Ecommerce
+# Sistema de vendas
 
 ## Sobre
 É um site fullstack onde vai simular um site de venda de produtos
@@ -46,11 +46,4 @@ Treinar meus limites como fullstack e adiciona-lo ao meu portifólio
   - [VsCode](https://code.visualstudio.com/) Editor de codigo fonte
   - [Vite](https://vitejs.dev/) Montar o projeto
   
-</details>
-
-<details>
-  <summary><strong>🧰 Dependencias</strong></summary><br />
-  - [React Bootstrap](https://react-bootstrap.netlify.app/) Estilização
-  - [React Router](https://reactrouter.com/en/main) Rotas
-  - [Linter](https://eslint.org/) Linter 
 </details>
