@@ -23,6 +23,7 @@ class Server:
 
   def routes(self) -> None:
     self.route = Routes.Tests(self.app)
+    self.route = Routes.Products(self.app)
 
 
 if __name__ == '__main__':
