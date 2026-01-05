@@ -1,8 +1,18 @@
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
+
 function SellingPage() {
+  const [input, setInput] = useState('');
+  
   return (
     <>
-      <h1>Pagina</h1>
-      <h2>Venda!</h2>
+      <Form.Control
+        type="search"
+        placeholder="pesquise pelo produto"
+        value={input}
+        onChange={(event) => setInput(event.target.value)}
+        className="me-2"
+      />
     </>
   );
 }
