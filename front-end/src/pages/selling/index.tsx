@@ -4,6 +4,7 @@ import { ProductType } from '../../types/products';
 import ProductsDisplay from './productsDisplay';
 import { Container, Row } from 'react-bootstrap';
 import { getAllProducts } from '../../services/productsService';
+import ShoppingCart from './shoppingCart';
 
 function SellingPage() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -21,6 +22,10 @@ function SellingPage() {
 
   const availableProducts = searchResults.filter(
     product => !selectedProductIds.includes(product.id)
+  );
+
+  const selectedProduct = products.filter(product => 
+    selectedProductIds.includes(product.id)
   );
 
   const handleSearch = (value: string) => {
@@ -46,6 +51,7 @@ function SellingPage() {
             setSelectedProductsIds(prev => [...prev, product.id])
           }
         />
+        <ShoppingCart selectedProducts={ selectedProduct } />
       </Row>
     </Container>
   );

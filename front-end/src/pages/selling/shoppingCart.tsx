@@ -1,0 +1,25 @@
+import { Container, ListGroup } from 'react-bootstrap';
+import { ProductType } from '../../types/products';
+
+export interface productsDisplayProps {
+  selectedProducts: ProductType[];
+}
+
+function ShoppingCart({ selectedProducts }: productsDisplayProps) {
+  return (
+    <Container>
+      <h4>Carrinho</h4>
+      <ListGroup as="ul">
+        {
+          selectedProducts.map((product) => {
+            return <ListGroup.Item as="li" variant="primary" key={product.id} action>
+              {product.name}
+            </ListGroup.Item>;
+          })
+        }
+      </ListGroup>
+    </Container>
+  );
+}
+
+export default ShoppingCart;
