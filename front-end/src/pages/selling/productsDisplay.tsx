@@ -6,15 +6,12 @@ export interface productsDisplayProps {
 }
 
 function ProductsDisplay({ searchResults }: productsDisplayProps) {
-
-  console.log(searchResults);
-
   return (
     <>
       <ListGroup as="ul">
         {
           searchResults.map((result, id) => {
-            return <ListGroup.Item as="li" key={id}>
+            return <ListGroup.Item as="li" action onClick={() => console.log(result.name)} key={id}>
               {result.name}
             </ListGroup.Item>;
           })
