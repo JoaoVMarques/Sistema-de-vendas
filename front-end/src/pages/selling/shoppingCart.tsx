@@ -7,7 +7,7 @@ export interface productsDisplayProps {
 
 function ShoppingCart({ selectedProducts }: productsDisplayProps) {
   return (
-    <Container>
+    <Container className="mt-4">
       <h4>Carrinho</h4>
       <ListGroup as="ul">
         {

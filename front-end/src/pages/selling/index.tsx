@@ -41,10 +41,18 @@ function SellingPage() {
     setSearchResults(result);
   };
 
+  const onEnter = () => {
+    if(availableProducts.length > 0) {
+      const firstProduct = availableProducts[0];
+      setSelectedProductsIds(prev => [... prev, firstProduct.id]);
+      setSearchResults([]);
+    }
+  };
+
   return (
     <Container className="mt-2">
       <Row>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={handleSearch} onEnter={onEnter} />
         <ProductsDisplay 
           products={availableProducts}
           onSelect={(product: ProductType) =>
