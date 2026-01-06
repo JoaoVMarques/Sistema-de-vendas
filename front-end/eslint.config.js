@@ -18,6 +18,7 @@ export default [
     rules: {
       "quotes": [2, "single", { "avoidEscape": true }],
       "jsx-quotes": ["error", "prefer-double"],
+      "react/prop-types": "off",
       "linebreak-style": 0,
       'react/react-in-jsx-scope': 'off',
       'no-console': 'off',
