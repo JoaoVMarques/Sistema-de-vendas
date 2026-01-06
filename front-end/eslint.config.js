@@ -17,6 +17,7 @@ export default [
   {
     rules: {
       "quotes": [2, "single", { "avoidEscape": true }],
+      "semi": ['error', 'always'],
       "jsx-quotes": ["error", "prefer-double"],
       "react/prop-types": "off",
       "linebreak-style": 0,
