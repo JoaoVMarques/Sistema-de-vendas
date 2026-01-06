@@ -1,33 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { getAllProducts } from '../../services/productsService';
-import { ProductType } from '../../types/products';
 
 export interface SearchBarProps {
-  setSearchResults: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  onSearch: (value: string) => void
 }
 
-function SearchBar({ setSearchResults }: SearchBarProps) {
+function SearchBar({ onSearch }: SearchBarProps) {
   const [input, setInput] = useState('');
-  const [products, setProducts] = useState<ProductType[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const productsList = await getAllProducts();
-      setProducts(productsList);
-    };
-
-    fetchData();
-  }, []);
 
   const handleChange = (value: string) => {
     setInput(value);
-
-    const result = products.filter(product =>
-      product.name.toLowerCase().includes(value.toLowerCase())
-    );
-
-    setSearchResults(result);
+    onSearch(value);
   };
 
   return (

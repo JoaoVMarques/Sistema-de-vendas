@@ -10,8 +10,11 @@ function ProductsDisplay({ searchResults }: productsDisplayProps) {
     <>
       <ListGroup as="ul">
         {
-          searchResults.map((result, id) => {
-            return <ListGroup.Item as="li" action onClick={() => console.log(result.name)} key={id}>
+          searchResults.map((result) => {
+            return <ListGroup.Item 
+              as="li" 
+              action 
+              onClick={() => console.log(result.name)} key={result.id}>
               {result.name}
             </ListGroup.Item>;
           })
