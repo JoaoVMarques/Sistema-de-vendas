@@ -27,6 +27,7 @@ function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDispl
             return <ListGroup.Item 
               as="li"
               action
+              className='cursor-pointer'
               active={ highlightedIndex === index }
               onClick={() => onSelect(product)} key={product.id}
               ref={index === highlightedIndex ? activeItemRef : null}>
