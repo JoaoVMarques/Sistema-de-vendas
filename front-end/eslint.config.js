@@ -20,7 +20,6 @@ export default [
       "semi": ['error', 'always'],
       "jsx-quotes": ["error", "prefer-double"],
       "react/prop-types": "off",
-      "varsIgnorePattern": "^_",
       "linebreak-style": 0,
       'react/react-in-jsx-scope': 'off',
       'no-console': 'off',

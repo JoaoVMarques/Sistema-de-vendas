@@ -11,6 +11,7 @@ function SellingPage() {
   const [searchResults, setSearchResults] = useState<ProductType[]>([]);
   const [selectedProductIds, setSelectedProductsIds] = useState<number[]>([]);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [searchbarInput, setSearchbarInput] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +41,7 @@ function SellingPage() {
     );
     
     setSearchResults(result);
-    return result
+    return result;
   };
 
   const onEnter = (selectProductIndex: number) => {
@@ -51,19 +52,28 @@ function SellingPage() {
     }
   };
 
+  const selectProduct = (product: ProductType) => {
+    setSelectedProductsIds(prev => [...prev, product.id]);
+    setSearchbarInput('');
+    handleSearch('');
+  };
+
   return (
     <Container className="mt-2">
       <Row>
-        <SearchBar 
+        <SearchBar
           onSearch={handleSearch} 
           onHighlightChange={setHighlightedIndex} 
-          onEnter={onEnter} />
-        <Col className='mt-1'>
+          onEnter={onEnter} 
+          input={searchbarInput}
+          setInput={setSearchbarInput}
+        />
+        <Col className="mt-1">
           <ProductsDisplay
             products={availableProducts}
             highlightedIndex={highlightedIndex}
             onSelect={(product: ProductType) =>
-              setSelectedProductsIds(prev => [...prev, product.id])
+              selectProduct(product)
             }
           />
         </Col>
