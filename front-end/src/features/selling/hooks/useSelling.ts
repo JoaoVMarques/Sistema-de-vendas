@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProductType } from '../types/products';
+import { ProductType } from '../types/Products';
 import { getAllProducts } from '../../../services/productsService';
 
 export function useSelling() {
