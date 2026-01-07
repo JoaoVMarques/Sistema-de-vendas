@@ -10,7 +10,7 @@ export interface SearchBarProps {
   setInput: (text: string) => void;
 }
 
-function SearchBar({ onSearch,
+export function SearchBar({ onSearch,
   onEnter,
   onHighlightChange,
   input,
@@ -59,5 +59,3 @@ function SearchBar({ onSearch,
     />
   );
 }
-
-export default SearchBar;

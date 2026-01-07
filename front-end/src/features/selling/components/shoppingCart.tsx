@@ -1,11 +1,11 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { ProductType } from '../../types/products';
+import { ProductType } from '../types/products';
 
 export interface productsDisplayProps {
   selectedProducts: ProductType[];
 }
 
-function ShoppingCart({ selectedProducts }: productsDisplayProps) {
+export function ShoppingCart({ selectedProducts }: productsDisplayProps) {
   return (
     <Container className="mt-4">
       <h4>Carrinho</h4>
@@ -22,4 +22,3 @@ function ShoppingCart({ selectedProducts }: productsDisplayProps) {
   );
 }
 
-export default ShoppingCart;

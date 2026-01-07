@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import SearchBar from './searchBar';
-import { ProductType } from '../../types/products';
-import ProductsDisplay from './productsDisplay';
 import { Col, Container, Row } from 'react-bootstrap';
-import { getAllProducts } from '../../services/productsService';
-import ShoppingCart from './shoppingCart';
+import { getAllProducts } from '../services/productsService';
+import { ProductType } from '../features/selling/types/products';
+import { SearchBar, ProductsDisplay, ShoppingCart } from '../features/selling';
 
 function SellingPage() {
   const [products, setProducts] = useState<ProductType[]>([]);

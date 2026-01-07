@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import SellingPage from '../pages/selling/';
+import SellingPage from '../pages/SellingPage';
 
 function Router() {
   return (
     <Routes>
-      <Route path="/selling" element={<SellingPage/ >} />
-      <Route path="*" element={<Navigate to="/selling" replace />} />
+      <Route path="/selling" element={ <SellingPage/ > } />
+      <Route path="*" element={ <Navigate to="/selling" replace /> } />
     </Routes>
   );
 }

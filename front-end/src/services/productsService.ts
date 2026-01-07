@@ -1,4 +1,4 @@
-import { ProductTypeAPI } from '../types/products';
+import { ProductTypeAPI } from '../features/selling/types/products';
 import api from './api';
 
 export async function getAllProducts() {

@@ -1,15 +1,15 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { ProductType } from '../../types/products';
-import '../../styles.css';
+import { ProductType } from '../types/products';
+import '../../../styles/styles.css';
 import { useEffect, useRef } from 'react';
 
-export interface productsDisplayProps {
+interface productsDisplayProps {
   products: ProductType[];
   onSelect: (product: ProductType) => void;
   highlightedIndex: number;
 }
 
-function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDisplayProps) {
+export function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDisplayProps) {
   const activeItemRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
@@ -40,5 +40,3 @@ function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDispl
     </Container>
   );
 }
-
-export default ProductsDisplay;
