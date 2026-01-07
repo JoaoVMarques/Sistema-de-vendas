@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
+import { ProductType } from '../../types/products';
 
 export interface SearchBarProps {
-  onSearch: (value: string) => void;
+  onSearch: (value: string) => ProductType[];
   onEnter: (selectProductIndex: number) => void;
   onHighlightChange: (index: number) => void;
 }
@@ -10,11 +11,17 @@ export interface SearchBarProps {
 function SearchBar({ onSearch, onEnter, onHighlightChange }: SearchBarProps) {
   const [input, setInput] = useState('');
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [searchProductsQntd, setSearchResultsQntd] = useState(0)
+
+  const search = (value: string) => {
+    const searchedQntd = onSearch(value).length
+    setSearchResultsQntd(searchedQntd);
+    setHighlightedIndex(0);
+  }
 
   const handleChange = (value: string) => {
     setInput(value);
-    onSearch(value);
-    setHighlightedIndex(0);
+    search(value)
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -22,7 +29,7 @@ function SearchBar({ onSearch, onEnter, onHighlightChange }: SearchBarProps) {
       event.preventDefault();
       onEnter(highlightedIndex);
       setInput('');
-      onSearch('');
+      search('');
 
       
       setHighlightedIndex(0);
@@ -30,7 +37,7 @@ function SearchBar({ onSearch, onEnter, onHighlightChange }: SearchBarProps) {
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      setHighlightedIndex(prev => prev + 1);
+      setHighlightedIndex(prev => Math.min(prev + 1, searchProductsQntd - 1));
     }
 
     if (event.key === 'ArrowUp') {

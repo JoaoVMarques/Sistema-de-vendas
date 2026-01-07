@@ -32,7 +32,7 @@ function SellingPage() {
   const handleSearch = (value: string) => {
     if(!value.trim()) {
       setSearchResults([]);
-      return;
+      return [];
     }
 
     const result = products.filter(product =>
@@ -40,6 +40,7 @@ function SellingPage() {
     );
     
     setSearchResults(result);
+    return result
   };
 
   const onEnter = (selectProductIndex: number) => {
