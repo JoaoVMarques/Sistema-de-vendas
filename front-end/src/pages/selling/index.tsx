@@ -26,14 +26,14 @@ function SellingPage() {
     product => !selectedProductIds.includes(product.id)
   );
 
-  const selectedProduct = products.filter(product => 
+  const selectedProducts = products.filter(product => 
     selectedProductIds.includes(product.id)
   );
 
   const handleSearch = (value: string) => {
     if(!value.trim()) {
       setSearchResults([]);
-      return [];
+      return;
     }
 
     const result = products.filter(product =>
@@ -41,7 +41,6 @@ function SellingPage() {
     );
     
     setSearchResults(result);
-    return result;
   };
 
   const onEnter = (selectProductIndex: number) => {
@@ -66,6 +65,7 @@ function SellingPage() {
           onHighlightChange={setHighlightedIndex} 
           onEnter={onEnter} 
           input={searchbarInput}
+          resultsCount={availableProducts.length}
           setInput={setSearchbarInput}
         />
         <Col className="mt-1">
@@ -77,7 +77,7 @@ function SellingPage() {
             }
           />
         </Col>
-        <ShoppingCart selectedProducts={ selectedProduct } />
+        <ShoppingCart selectedProducts={ selectedProducts } />
       </Row>
     </Container>
   );
