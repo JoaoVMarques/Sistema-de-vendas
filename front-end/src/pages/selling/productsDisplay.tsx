@@ -1,5 +1,7 @@
-import { ListGroup } from 'react-bootstrap';
+import { Container, ListGroup } from 'react-bootstrap';
 import { ProductType } from '../../types/products';
+import '../../styles.css'
+import { useEffect, useRef } from 'react';
 
 export interface productsDisplayProps {
   products: ProductType[];
@@ -8,22 +10,32 @@ export interface productsDisplayProps {
 }
 
 function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDisplayProps) {
-  return (
-    <>
-      <ListGroup as="ul">
+  const activeItemRef = useRef<HTMLLIElement | null>(null);
+
+  useEffect(() => {
+    activeItemRef.current?.scrollIntoView({
+      block: 'nearest',
+      behavior: 'smooth'
+    })
+  }, [highlightedIndex])
+
+  return (  
+    <Container>
+      <ListGroup as="ul" className='products-list'>
         {
           products.map((product, index) => {
             return <ListGroup.Item 
               as="li"
               action
               active={ highlightedIndex === index }
-              onClick={() => onSelect(product)} key={product.id}>
+              onClick={() => onSelect(product)} key={product.id}
+              ref={index === highlightedIndex ? activeItemRef : null}>
               {product.name}
             </ListGroup.Item>;
           })
         }
       </ListGroup>
-    </>
+    </Container>
   );
 }
 

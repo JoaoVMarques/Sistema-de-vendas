@@ -29,10 +29,12 @@ function SearchBar({ onSearch, onEnter, onHighlightChange }: SearchBarProps) {
     }
 
     if (event.key === 'ArrowDown') {
+      event.preventDefault();
       setHighlightedIndex(prev => prev + 1);
     }
 
     if (event.key === 'ArrowUp') {
+      event.preventDefault();
       setHighlightedIndex(prev => Math.max(prev - 1, 0));
     }
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import SearchBar from './searchBar';
 import { ProductType } from '../../types/products';
 import ProductsDisplay from './productsDisplay';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { getAllProducts } from '../../services/productsService';
 import ShoppingCart from './shoppingCart';
 
@@ -57,14 +57,15 @@ function SellingPage() {
           onSearch={handleSearch} 
           onHighlightChange={setHighlightedIndex} 
           onEnter={onEnter} />
-
-        <ProductsDisplay
-          products={availableProducts}
-          highlightedIndex={highlightedIndex}
-          onSelect={(product: ProductType) =>
-            setSelectedProductsIds(prev => [...prev, product.id])
-          }
-        />
+        <Col className='mt-1'>
+          <ProductsDisplay
+            products={availableProducts}
+            highlightedIndex={highlightedIndex}
+            onSelect={(product: ProductType) =>
+              setSelectedProductsIds(prev => [...prev, product.id])
+            }
+          />
+        </Col>
         <ShoppingCart selectedProducts={ selectedProduct } />
       </Row>
     </Container>
