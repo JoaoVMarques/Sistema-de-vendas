@@ -1,44 +1,37 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
+import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import react from "eslint-plugin-react";
 
-
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import("eslint").ESLint.Config[]} */
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
+  /* ===========================
+   * 📦 CONFIGS BASE
+   * =========================== */
+  js.configs.recommended,
   ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  react.configs.flat.recommended,
+
+  /* ===========================
+   * 🎯 CONFIG DO PROJETO
+   * =========================== */
   {
-    ignores: ["eslint.config.js"]
-  },
-  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    ignores: ["eslint.config.js"],
+
+    languageOptions: {
+      globals: globals.browser,
+    },
+
     rules: {
-      "quotes": [2, "single", { "avoidEscape": true }],
-      "semi": ['error', 'always'],
-      "jsx-quotes": ["error", "prefer-double"],
-      "react/prop-types": "off",
-      "linebreak-style": 0,
-      'react/react-in-jsx-scope': 'off',
-      'no-console': 'off',
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
-      'consistent-return': 'off',
-      'object-curly-spacing': ['error', 'always'],
-      'keyword-spacing': ['error', {
-        overrides: {
-          if: { after: false },
-        },
-      }],
-      semi: 2,
-      indent: [
-        'error',
-        2,
-      ],
-      'max-len': [
-        'error',
+      /* ===========================
+       * 🧼 ESTILO & FORMATAÇÃO
+       * =========================== */
+      "quotes": ["error", "single", { avoidEscape: true }],
+      "semi": ["error", "always"],
+      "indent": ["error", 2],
+      "max-len": [
+        "error",
         {
           code: 100,
           tabWidth: 2,
@@ -46,7 +39,64 @@ export default [
           ignoreUrls: true,
           ignoreTemplateLiterals: true,
         },
-      ]
-    }
+      ],
+
+      "no-trailing-spaces": "error",
+      "no-multiple-empty-lines": ["error", { max: 1 }],
+      "comma-spacing": ["error", { before: false, after: true }],
+      "comma-dangle": ["error", "always-multiline"],
+      "space-infix-ops": "error",
+      "operator-linebreak": ["error", "before"],
+      "keyword-spacing": ["error", { before: true, after: true }],
+      "jsx-quotes": ["error", "prefer-double"],
+
+      /* ===========================
+       * 📐 CONSISTÊNCIA DE CÓDIGO
+       * =========================== */
+      "eqeqeq": ["error", "always"],
+      "curly": ["error", "all"],
+      "one-var": ["error", "never"],
+      "no-unreachable": "error",
+      "space-before-blocks": ["error", "always"],
+
+      /* ===========================
+       * ⚛️ REACT & JSX
+       * =========================== */
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+
+      "react/jsx-curly-spacing": [
+        "error",
+        {
+          when: "always",
+          children: true,
+        },
+      ],
+
+      "react/jsx-max-props-per-line": [
+        "error",
+        {
+          maximum: 1,
+          when: "multiline",
+        },
+      ],
+
+      "react/jsx-key": "error",
+
+      /* ===========================
+       * 🧠 PRAGMATISMO (DEV EXPERIENCE)
+       * =========================== */
+      "no-console": "off",
+      "consistent-return": "off",
+      "linebreak-style": "off",
+    },
+  },
+
+  {
+  settings: {
+    react: {
+      version: "detect",
+      },
+    },
   }
-];  
+];

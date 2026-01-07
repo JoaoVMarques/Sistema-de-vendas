@@ -18,33 +18,33 @@ function SellingPage() {
       const productsList = await getAllProducts();
       setProducts(productsList);
     };
-    
+
     fetchData();
   }, []);
 
   const availableProducts = searchResults.filter(
-    product => !selectedProductIds.includes(product.id)
+    product => !selectedProductIds.includes(product.id),
   );
 
-  const selectedProducts = products.filter(product => 
-    selectedProductIds.includes(product.id)
+  const selectedProducts = products.filter(product =>
+    selectedProductIds.includes(product.id),
   );
 
   const handleSearch = (value: string) => {
-    if(!value.trim()) {
+    if (!value.trim()) {
       setSearchResults([]);
       return;
     }
 
     const result = products.filter(product =>
-      product.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      product.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()),
     );
-    
+
     setSearchResults(result);
   };
 
   const onEnter = (selectProductIndex: number) => {
-    if(availableProducts.length > 0) {
+    if (availableProducts.length > 0) {
       const firstProduct = availableProducts[selectProductIndex];
       setSelectedProductsIds(prev => [... prev, firstProduct.id]);
       setSearchResults([]);
@@ -61,18 +61,18 @@ function SellingPage() {
     <Container className="mt-2">
       <Row>
         <SearchBar
-          onSearch={handleSearch} 
-          onHighlightChange={setHighlightedIndex} 
-          onEnter={onEnter} 
-          input={searchbarInput}
-          resultsCount={availableProducts.length}
-          setInput={setSearchbarInput}
+          onSearch={ handleSearch }
+          onHighlightChange={ setHighlightedIndex }
+          onEnter={ onEnter }
+          input={ searchbarInput }
+          resultsCount={ availableProducts.length }
+          setInput={ setSearchbarInput }
         />
         <Col className="mt-1">
           <ProductsDisplay
-            products={availableProducts}
-            highlightedIndex={highlightedIndex}
-            onSelect={(product: ProductType) =>
+            products={ availableProducts }
+            highlightedIndex={ highlightedIndex }
+            onSelect={ (product: ProductType) =>
               selectProduct(product)
             }
           />

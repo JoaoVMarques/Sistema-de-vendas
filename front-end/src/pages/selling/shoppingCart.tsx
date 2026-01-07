@@ -12,8 +12,8 @@ function ShoppingCart({ selectedProducts }: productsDisplayProps) {
       <ListGroup as="ul">
         {
           selectedProducts.map((product) => {
-            return <ListGroup.Item as="li" variant="primary" key={product.id} action>
-              {product.name}
+            return <ListGroup.Item as="li" variant="primary" key={ product.id } action>
+              { product.name }
             </ListGroup.Item>;
           })
         }

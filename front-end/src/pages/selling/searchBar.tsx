@@ -13,8 +13,8 @@ export interface SearchBarProps {
 function SearchBar({ onSearch,
   onEnter,
   onHighlightChange,
-  input, 
-  setInput, 
+  input,
+  setInput,
   resultsCount }: SearchBarProps) {
 
   const [highlightedIndex, setHighlightedIndex] = useState(0);
@@ -25,7 +25,7 @@ function SearchBar({ onSearch,
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       event.preventDefault();
       onEnter(highlightedIndex);
       setInput('');
@@ -33,12 +33,12 @@ function SearchBar({ onSearch,
       setHighlightedIndex(0);
     }
 
-    if(event.key === 'ArrowDown') {
+    if (event.key === 'ArrowDown') {
       event.preventDefault();
       setHighlightedIndex(prev => Math.min(prev + 1, resultsCount - 1));
     }
 
-    if(event.key === 'ArrowUp') {
+    if (event.key === 'ArrowUp') {
       event.preventDefault();
       setHighlightedIndex(prev => Math.max(prev - 1, 0));
     }
@@ -52,9 +52,9 @@ function SearchBar({ onSearch,
     <Form.Control
       type="search"
       placeholder="pesquise pelo produto"
-      value={input}
-      onChange={(e) => handleChange(e.target.value)}
-      onKeyDown={handleKeyDown}
+      value={ input }
+      onChange={ (e) => handleChange(e.target.value) }
+      onKeyDown={ handleKeyDown }
       className="me-2"
     />
   );

@@ -15,23 +15,24 @@ function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDispl
   useEffect(() => {
     activeItemRef.current?.scrollIntoView({
       block: 'nearest',
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }, [highlightedIndex]);
 
-  return (  
+  return (
     <Container>
       <ListGroup as="ul" className="products-list">
         {
           products.map((product, index) => {
-            return <ListGroup.Item 
+            return <ListGroup.Item
               as="li"
               action
               className="cursor-pointer"
               active={ highlightedIndex === index }
-              onClick={() => onSelect(product)} key={product.id}
-              ref={index === highlightedIndex ? activeItemRef : null}>
-              {product.name}
+              onClick={ () => onSelect(product) }
+              key={ product.id }
+              ref={ index === highlightedIndex ? activeItemRef : null }>
+              { product.name }
             </ListGroup.Item>;
           })
         }
