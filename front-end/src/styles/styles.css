@@ -13,6 +13,14 @@
   width: 100%;
 }
 
+.header {
+  position: sticky;
+  background-color: white;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .white-container {
   background-color: white;
 }

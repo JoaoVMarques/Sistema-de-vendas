@@ -44,7 +44,7 @@ export function SearchBar({ onSearch,
   };
 
   return (
-    <div className="white-container p-4 border-bottom">
+    <>
       <Form.Control
         type="search"
         placeholder="pesquise pelo produto"
@@ -53,6 +53,6 @@ export function SearchBar({ onSearch,
         onKeyDown={ handleKeyDown }
         className="me-2"
       />
-    </div>
+    </>
   );
 }
