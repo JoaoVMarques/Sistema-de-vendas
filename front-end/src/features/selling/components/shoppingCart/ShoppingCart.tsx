@@ -1,6 +1,7 @@
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/Products';
 import { ShoppingCartItem } from './ShoppingCartItem';
+import { useMemo } from 'react';
 
 export interface productsDisplayProps {
   selectedProducts: ProductType[];
@@ -8,6 +9,12 @@ export interface productsDisplayProps {
 }
 
 export function ShoppingCart({ selectedProducts, removeProduct }: productsDisplayProps) {
+  const totalPrice = useMemo(() => {
+    return selectedProducts.reduce((acc, product) => {
+      return acc + product.price;
+    }, 0);
+  }, [selectedProducts]);
+
   return (
     <Container>
       <Row className="mt-3 justify-content-between">
@@ -26,7 +33,20 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
           </ListGroup>
         </Col>
         <Col md={ 4 } className="white-container p-3 rounded">
-          <h4>Visão Geral</h4>
+          <Row>
+            <h4>Visão Geral</h4>
+          </Row>
+          <Row className="mt-2">
+            <Col>
+              <span className="text-secondary">Preço:</span>
+            </Col>
+            <Col>
+              <span className="fw-bold"> R$ { totalPrice } </span>
+            </Col>
+          </Row>
+          <Row>
+            <hr className="mx-2 size w-75"/>
+          </Row>
         </Col>
       </Row>
     </Container>
