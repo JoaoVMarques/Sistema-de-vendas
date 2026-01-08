@@ -26,9 +26,10 @@ export function useSelling() {
     product => !selectedProductIds.includes(product.id),
   );
 
-  const selectedProducts = products.filter(product =>
-    selectedProductIds.includes(product.id),
-  );
+  const selectedProducts = products
+    .filter(product => selectedProductIds.includes(product.id))
+    .map(product => { return {...product, quantity: 1 };
+    });
 
   const handleSearch = (value: string) => {
     if (!value.trim()) {

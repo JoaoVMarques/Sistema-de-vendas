@@ -15,6 +15,9 @@ export function Header({ SelectedPage }: productsDisplayProps) {
             Marques-Sales
           </h4>
         </Row>
+        <Row className="ms-1">
+          <hr className="w-75" />
+        </Row>
         <Row className="mt-3">
           <span><House className="header-icon" size={ 20 } /> Home</span>
         </Row>

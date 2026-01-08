@@ -1,8 +1,8 @@
 import { Button, Col, ListGroup, Row } from 'react-bootstrap';
-import { ProductType } from '../../types/Products';
+import { SelectedProductType } from '../../types/Products';
 
 interface productsDisplayProps {
-  product: ProductType;
+  product: SelectedProductType;
   removeProduct: (productId: number) => void;
 }
 
@@ -10,9 +10,10 @@ export function ShoppingCartItem({ product, removeProduct }: productsDisplayProp
   return (
     <ListGroup.Item as="li" variant="primary" action>
       <Row className="align-items-center">
-        <Col md={ 7 }>
+        <Col md={ 4 }>
           <span>{ product.name }</span>
         </Col>
+        <Col md={ 3 }>{ product.quantity }</Col>
         <Col md={ 3 }>
           <span>R$ { product.price }</span>
         </Col>

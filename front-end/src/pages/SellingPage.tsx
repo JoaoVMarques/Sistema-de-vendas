@@ -51,7 +51,6 @@ function SellingPage() {
                 selectedProducts={ selectedProducts }
               />
             </Container>
-
           </Col>
         </Row>
       </Container>

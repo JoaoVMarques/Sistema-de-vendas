@@ -1,10 +1,10 @@
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
-import { ProductType } from '../../types/Products';
+import { SelectedProductType } from '../../types/Products';
 import { ShoppingCartItem } from './ShoppingCartItem';
 import { useMemo } from 'react';
 
 export interface productsDisplayProps {
-  selectedProducts: ProductType[];
+  selectedProducts: SelectedProductType[];
   removeProduct: (productId: number) => void;
 }
 
@@ -22,7 +22,8 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
           <h4>Carrinho</h4>
           <div className="px-3 mb-2">
             <Row className="justify-content-between mb-2">
-              <Col md={ 7 }><span>Produto</span></Col>
+              <Col md={ 4 }><span>Produto</span></Col>
+              <Col md={ 3 }><span>Quantidade</span></Col>
               <Col md={ 3 }><span>Preço</span></Col>
               <Col md={ 2 } />
             </Row>

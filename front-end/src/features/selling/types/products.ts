@@ -4,6 +4,10 @@ export interface ProductType {
   price: number;
 }
 
+export interface SelectedProductType extends ProductType {
+  quantity: number,
+}
+
 export interface ProductTypeAPI {
   content: ProductType[];
 }
