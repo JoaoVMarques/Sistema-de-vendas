@@ -17,9 +17,16 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
 
   return (
     <Container>
-      <Row className="mt-3 justify-content-between">
+      <Row className="mt-3 justify-content-between align-items-start">
         <Col md={ 7 } className="white-container p-3 rounded">
           <h4>Carrinho</h4>
+          <div className="px-3 mb-2">
+            <Row className="justify-content-between mb-2">
+              <Col md={ 7 }><span>Produto</span></Col>
+              <Col md={ 3 }><span>Preço</span></Col>
+              <Col md={ 2 } />
+            </Row>
+          </div>
           <ListGroup as="ul">
             {
               selectedProducts.map((product) => {

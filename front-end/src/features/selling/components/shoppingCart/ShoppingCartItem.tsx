@@ -10,11 +10,14 @@ export function ShoppingCartItem({ product, removeProduct }: productsDisplayProp
   return (
     <ListGroup.Item as="li" variant="primary" action>
       <Row className="align-items-center">
-        <Col>
-          { product.name }
+        <Col md={ 7 }>
+          <span>{ product.name }</span>
         </Col>
-        <Col xs="auto">
-          <Button onClick={ () => removeProduct(product.id) }>
+        <Col md={ 3 }>
+          <span>R$ { product.price }</span>
+        </Col>
+        <Col md={ 2 } className="text-end">
+          <Button className="btn-danger" onClick={ () => removeProduct(product.id) }>
             X
           </Button>
         </Col>
