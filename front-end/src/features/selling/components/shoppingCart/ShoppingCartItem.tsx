@@ -1,7 +1,7 @@
 import { Button, Col, ListGroup, Row } from 'react-bootstrap';
 import { ProductType } from '../../types/Products';
 
-export interface productsDisplayProps {
+interface productsDisplayProps {
   product: ProductType;
   removeProduct: (productId: number) => void;
 }

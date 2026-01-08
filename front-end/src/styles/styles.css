@@ -24,3 +24,7 @@
 .white-container {
   background-color: white;
 }
+
+.header-icon {
+  vertical-align: -4px
+}

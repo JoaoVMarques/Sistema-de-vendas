@@ -1,7 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { SearchBar, ProductsDisplay, ShoppingCart, useSelling } from '../features/selling';
 import '../styles/styles.css';
-import { Header } from '../components/header';
+import { Header } from '../components/Header';
 
 function SellingPage() {
   const {
@@ -23,7 +23,7 @@ function SellingPage() {
         <Row className="g-0">
           <Col md={ 2 }
             className="p-0 shadow">
-            <Header />
+            <Header SelectedPage={ 'cart' } />
           </Col>
           <Col md={ 10 }>
             <div className="p-3 bg-white border-bottom shadow">
