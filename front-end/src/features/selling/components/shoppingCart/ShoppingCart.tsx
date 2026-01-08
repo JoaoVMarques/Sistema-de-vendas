@@ -9,9 +9,9 @@ export interface productsDisplayProps {
 
 export function ShoppingCart({ selectedProducts, removeProduct }: productsDisplayProps) {
   return (
-    <Container className="mt-4 white-container p-5 rounded">
-      <Row>
-        <Col md={ 8 }>
+    <Container>
+      <Row className="mt-3 justify-content-between">
+        <Col md={ 7 } className="white-container p-3 rounded">
           <h4>Carrinho</h4>
           <ListGroup as="ul">
             {
@@ -25,7 +25,7 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
             }
           </ListGroup>
         </Col>
-        <Col md={ 4 }>
+        <Col md={ 4 } className="white-container p-3 rounded">
           <h4>Visão Geral</h4>
         </Col>
       </Row>
