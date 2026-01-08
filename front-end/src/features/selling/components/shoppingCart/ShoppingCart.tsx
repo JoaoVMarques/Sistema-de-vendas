@@ -4,16 +4,21 @@ import { ShoppingCartItem } from './ShoppingCartItem';
 
 export interface productsDisplayProps {
   selectedProducts: ProductType[];
+  removeProduct: (productId: number) => void;
 }
 
-export function ShoppingCart({ selectedProducts }: productsDisplayProps) {
+export function ShoppingCart({ selectedProducts, removeProduct }: productsDisplayProps) {
   return (
     <Container className="mt-4">
       <h4>Carrinho</h4>
       <ListGroup as="ul">
         {
           selectedProducts.map((product) => {
-            return <ShoppingCartItem product={ product } key={ product.id } />;
+            return <ShoppingCartItem
+              removeProduct={ removeProduct }
+              product={ product }
+              key={ product.id }
+            />;
           })
         }
       </ListGroup>

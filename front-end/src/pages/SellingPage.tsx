@@ -12,6 +12,7 @@ function SellingPage() {
     setSearchbarInput,
 
     handleSearch,
+    removeProduct,
     onEnter,
     clickOnProduct,
   } = useSelling();
@@ -38,7 +39,7 @@ function SellingPage() {
           />
         </Col>
 
-        <ShoppingCart selectedProducts={ selectedProducts } />
+        <ShoppingCart removeProduct={ removeProduct } selectedProducts={ selectedProducts } />
       </Row>
     </Container>
   );

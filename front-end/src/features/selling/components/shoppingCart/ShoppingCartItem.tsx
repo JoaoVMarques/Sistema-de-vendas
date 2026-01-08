@@ -3,9 +3,10 @@ import { ProductType } from '../../types/Products';
 
 export interface productsDisplayProps {
   product: ProductType;
+  removeProduct: (productId: number) => void;
 }
 
-export function ShoppingCartItem({ product }: productsDisplayProps) {
+export function ShoppingCartItem({ product, removeProduct }: productsDisplayProps) {
   return (
     <ListGroup.Item as="li" variant="primary" action>
       <Row className="align-items-center">
@@ -13,7 +14,7 @@ export function ShoppingCartItem({ product }: productsDisplayProps) {
           { product.name }
         </Col>
         <Col xs="auto">
-          <Button>
+          <Button onClick={ () => removeProduct(product.id) }>
             X
           </Button>
         </Col>

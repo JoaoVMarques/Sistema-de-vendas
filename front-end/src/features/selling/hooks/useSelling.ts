@@ -51,6 +51,12 @@ export function useSelling() {
     }
   };
 
+  const removeProduct = (productId: number) => {
+    setSelectedProductsIds((prevSelected) =>
+      prevSelected.filter(id => id !== productId),
+    );
+  };
+
   const clickOnProduct = (product: ProductType) => {
     setSelectedProductsIds(prev => [...prev, product.id]);
     setSearchbarInput('');
@@ -67,6 +73,7 @@ export function useSelling() {
     setSearchbarInput,
 
     handleSearch,
+    removeProduct,
     onEnter,
     clickOnProduct,
   };
