@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 interface productsDisplayProps {
   products: ProductType[];
-  onSelect: (product: ProductType) => void;
+  onSelect: (productId: number) => void;
   highlightedIndex: number;
   setHighlightedIndex: (index: number) => void;
 }
@@ -34,7 +34,7 @@ export function ProductsDisplay({ products,
               className="cursor-pointer"
               active={ highlightedIndex === index }
               onMouseEnter={ () => setHighlightedIndex(index) }
-              onClick={ () => onSelect(product) }
+              onClick={ () => onSelect(product.id) }
               key={ product.id }
               ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }
             >

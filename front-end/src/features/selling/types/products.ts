@@ -5,7 +5,12 @@ export interface ProductType {
 }
 
 export interface SelectedProductType extends ProductType {
-  quantity: number,
+  quantity: number;
+}
+
+export interface CartItemState {
+  id: number;
+  quantity: number;
 }
 
 export interface ProductTypeAPI {

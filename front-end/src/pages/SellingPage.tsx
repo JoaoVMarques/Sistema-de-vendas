@@ -14,7 +14,8 @@ function SellingPage() {
     handleSearch,
     removeProduct,
     onEnter,
-    clickOnProduct,
+    SetCartProduct,
+    ChangeProductQuantity,
   } = useSelling();
 
   return (
@@ -43,10 +44,11 @@ function SellingPage() {
                   products={ availableProducts }
                   setHighlightedIndex={ setHighlightedIndex }
                   highlightedIndex={ highlightedIndex }
-                  onSelect={ clickOnProduct }
+                  onSelect={ SetCartProduct }
                 />
               </div>
               <ShoppingCart
+                handleQuantityChange={ ChangeProductQuantity }
                 removeProduct={ removeProduct }
                 selectedProducts={ selectedProducts }
               />

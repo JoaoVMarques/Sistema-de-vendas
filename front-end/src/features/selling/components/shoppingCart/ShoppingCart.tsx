@@ -6,9 +6,12 @@ import { useMemo } from 'react';
 export interface productsDisplayProps {
   selectedProducts: SelectedProductType[];
   removeProduct: (productId: number) => void;
+  handleQuantityChange: (ProductId: number, ProductQuantity: number) => void;
 }
 
-export function ShoppingCart({ selectedProducts, removeProduct }: productsDisplayProps) {
+export function ShoppingCart({ selectedProducts,
+  removeProduct,
+  handleQuantityChange }: productsDisplayProps) {
   const totalPrice = useMemo(() => {
     return selectedProducts.reduce((acc, product) => {
       return acc + product.price;
@@ -32,6 +35,7 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
             {
               selectedProducts.map((product) => {
                 return <ShoppingCartItem
+                  handleQuantityChange={ handleQuantityChange }
                   removeProduct={ removeProduct }
                   product={ product }
                   key={ product.id }

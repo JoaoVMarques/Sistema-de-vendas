@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { ProductType } from '../types/Products';
+import { CartItemState, ProductType } from '../types/Products';
 import { getAllProducts } from '../../../services/productsService';
 
 export function useSelling() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [searchResults, setSearchResults] = useState<ProductType[]>([]);
-  const [selectedProductIds, setSelectedProductsIds] = useState<number[]>([]);
+  const [cartItems, setCartItems] = useState<CartItemState[]>([]);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [searchbarInput, setSearchbarInput] = useState('');
 
@@ -23,13 +23,17 @@ export function useSelling() {
   }, [searchbarInput]);
 
   const availableProducts = searchResults.filter(
-    product => !selectedProductIds.includes(product.id),
+    (product) => !cartItems.some((item) => item.id === product.id),
   );
 
-  const selectedProducts = products
-    .filter(product => selectedProductIds.includes(product.id))
-    .map(product => { return {...product, quantity: 1 };
-    });
+  const selectedProducts = cartItems.map((cartItem) => {
+    const productDetails = products.find((p) => p.id === cartItem.id) as ProductType;
+
+    return {
+      ...productDetails,
+      quantity: cartItem.quantity,
+    };
+  });
 
   const handleSearch = (value: string) => {
     if (!value.trim()) {
@@ -44,24 +48,32 @@ export function useSelling() {
     setSearchResults(result);
   };
 
+  const SetCartProduct = (productId: number) => {
+    setCartItems(prev => [...prev, { id: productId, quantity: 1}]);
+    setSearchbarInput('');
+    handleSearch('');
+  };
+
   const onEnter = (selectProductIndex: number) => {
     if (availableProducts.length > 0) {
-      const firstProduct = availableProducts[selectProductIndex];
-      setSelectedProductsIds(prev => [... prev, firstProduct.id]);
+      const selectedProduct = availableProducts[selectProductIndex];
+      SetCartProduct(selectedProduct.id);
       setSearchResults([]);
     }
   };
 
-  const removeProduct = (productId: number) => {
-    setSelectedProductsIds((prevSelected) =>
-      prevSelected.filter(id => id !== productId),
+  const ChangeProductQuantity = (productId: number, newQuantity: number) => {
+    if (newQuantity < 1) {return;}
+
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item,
+      ),
     );
   };
 
-  const clickOnProduct = (product: ProductType) => {
-    setSelectedProductsIds(prev => [...prev, product.id]);
-    setSearchbarInput('');
-    handleSearch('');
+  const removeProduct = (productId: number) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
   return {
@@ -76,6 +88,7 @@ export function useSelling() {
     handleSearch,
     removeProduct,
     onEnter,
-    clickOnProduct,
+    SetCartProduct,
+    ChangeProductQuantity,
   };
 }
