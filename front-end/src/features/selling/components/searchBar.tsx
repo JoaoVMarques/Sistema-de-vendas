@@ -1,4 +1,4 @@
-import { Container, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 export interface SearchBarProps {
   onSearch: (value: string) => void;
@@ -44,7 +44,7 @@ export function SearchBar({ onSearch,
   };
 
   return (
-    <Container className="white-container p-4 rounded">
+    <div className="white-container p-4 border-bottom">
       <Form.Control
         type="search"
         placeholder="pesquise pelo produto"
@@ -53,6 +53,6 @@ export function SearchBar({ onSearch,
         onKeyDown={ handleKeyDown }
         className="me-2"
       />
-    </Container>
+    </div>
   );
 }

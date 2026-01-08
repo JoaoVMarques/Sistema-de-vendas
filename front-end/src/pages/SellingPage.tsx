@@ -20,7 +20,7 @@ function SellingPage() {
 
   return (
     <div className="selling-page-bg">
-      <Container>
+      <div>
         <Row>
           <SearchBar
             onSearch={ handleSearch }
@@ -31,17 +31,19 @@ function SellingPage() {
             resultsCount={ availableProducts.length }
             setInput={ setSearchbarInput }
           />
-          <Col className="mt-1">
-            <ProductsDisplay
-              products={ availableProducts }
-              setHighlightedIndex={ setHighlightedIndex }
-              highlightedIndex={ highlightedIndex }
-              onSelect={ clickOnProduct }
-            />
-          </Col>
-          <ShoppingCart removeProduct={ removeProduct } selectedProducts={ selectedProducts } />
+          <Container>
+            <Col className="mt-1">
+              <ProductsDisplay
+                products={ availableProducts }
+                setHighlightedIndex={ setHighlightedIndex }
+                highlightedIndex={ highlightedIndex }
+                onSelect={ clickOnProduct }
+              />
+            </Col>
+            <ShoppingCart removeProduct={ removeProduct } selectedProducts={ selectedProducts } />
+          </Container>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 }

@@ -45,7 +45,7 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
           </Row>
           <Row className="mt-2">
             <Col>
-              <span className="text-secondary">Preço:</span>
+              <span className="text-secondary">Preço Total:</span>
             </Col>
             <Col>
               <span className="fw-bold"> R$ { totalPrice } </span>
