@@ -4,8 +4,8 @@ import SellingPage from '../pages/SellingPage';
 function Router() {
   return (
     <Routes>
-      <Route path="/selling" element={ <SellingPage/ > } />
-      <Route path="*" element={ <Navigate to="/selling" replace /> } />
+      <Route path="/cart" element={ <SellingPage/ > } />
+      <Route path="*" element={ <Navigate to="/cart" replace /> } />
     </Routes>
   );
 }
