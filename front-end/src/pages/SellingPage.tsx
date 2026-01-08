@@ -37,7 +37,7 @@ function SellingPage() {
                 setInput={ setSearchbarInput }
               />
             </div>
-            <Container className="mt-4">
+            <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
                   products={ availableProducts }

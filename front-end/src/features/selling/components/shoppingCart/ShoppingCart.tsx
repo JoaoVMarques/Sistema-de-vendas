@@ -18,7 +18,7 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
   return (
     <Container>
       <Row className="mt-3 justify-content-between align-items-start">
-        <Col md={ 7 } className="white-container p-3 rounded">
+        <Col md={ 7 } className="white-container p-3 rounded shadow">
           <h4>Carrinho</h4>
           <div className="px-3 mb-2">
             <Row className="justify-content-between mb-2">
@@ -39,7 +39,7 @@ export function ShoppingCart({ selectedProducts, removeProduct }: productsDispla
             }
           </ListGroup>
         </Col>
-        <Col md={ 4 } className="white-container p-3 rounded">
+        <Col md={ 4 } className="shadow white-container p-3 rounded">
           <Row>
             <h4>Visão Geral</h4>
           </Row>

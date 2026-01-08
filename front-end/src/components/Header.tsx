@@ -1,11 +1,14 @@
+import { Container } from 'react-bootstrap';
 import '../styles/styles.css';
 
 export function Header() {
   return (
     <div className="header">
-      <h1>
+      <Container>
+        <h1>
         Header
-      </h1>
+        </h1>
+      </Container>
     </div>
   );
 }
