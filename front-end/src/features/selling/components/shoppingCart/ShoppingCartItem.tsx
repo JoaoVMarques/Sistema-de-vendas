@@ -1,5 +1,5 @@
-import { ListGroup } from 'react-bootstrap';
-import { ProductType } from '../../types/products';
+import { Button, Col, ListGroup, Row } from 'react-bootstrap';
+import { ProductType } from '../../types/Products';
 
 export interface productsDisplayProps {
   product: ProductType;
@@ -8,8 +8,18 @@ export interface productsDisplayProps {
 export function ShoppingCartItem({ product }: productsDisplayProps) {
   return (
     <ListGroup.Item as="li" variant="primary" action>
-      { product.name }
+      <Row className="align-items-center">
+        <Col>
+          { product.name }
+        </Col>
+        <Col xs="auto">
+          <Button>
+            X
+          </Button>
+        </Col>
+      </Row>
     </ListGroup.Item>
+
   );
 }
 

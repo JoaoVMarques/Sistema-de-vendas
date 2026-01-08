@@ -18,6 +18,10 @@ export function useSelling() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setHighlightedIndex(0);
+  }, [searchbarInput]);
+
   const availableProducts = searchResults.filter(
     product => !selectedProductIds.includes(product.id),
   );

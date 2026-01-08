@@ -21,7 +21,8 @@ function SellingPage() {
       <Row>
         <SearchBar
           onSearch={ handleSearch }
-          onHighlightChange={ setHighlightedIndex }
+          setHighlightedIndex={ setHighlightedIndex }
+          highlightedIndex={ highlightedIndex }
           onEnter={ onEnter }
           input={ searchbarInput }
           resultsCount={ availableProducts.length }

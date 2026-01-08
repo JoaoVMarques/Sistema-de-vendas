@@ -1,5 +1,5 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { ProductType } from '../../types/products';
+import { ProductType } from '../../types/Products';
 import { ShoppingCartItem } from './ShoppingCartItem';
 
 export interface productsDisplayProps {

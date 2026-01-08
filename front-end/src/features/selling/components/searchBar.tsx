@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 
 export interface SearchBarProps {
   onSearch: (value: string) => void;
   onEnter: (selectProductIndex: number) => void;
-  onHighlightChange: (index: number) => void;
+  setHighlightedIndex: (index: number) => void;
+  highlightedIndex: number;
   resultsCount: number;
   input: string;
   setInput: (text: string) => void;
@@ -12,12 +12,11 @@ export interface SearchBarProps {
 
 export function SearchBar({ onSearch,
   onEnter,
-  onHighlightChange,
+  setHighlightedIndex,
+  highlightedIndex,
   input,
   setInput,
   resultsCount }: SearchBarProps) {
-
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
 
   const handleChange = (value: string) => {
     setInput(value);
@@ -35,18 +34,14 @@ export function SearchBar({ onSearch,
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      setHighlightedIndex(prev => Math.min(prev + 1, resultsCount - 1));
+      setHighlightedIndex(Math.min(highlightedIndex + 1, resultsCount - 1));
     }
 
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      setHighlightedIndex(prev => Math.max(prev - 1, 0));
+      setHighlightedIndex(Math.max(highlightedIndex - 1, 0));
     }
   };
-
-  useEffect(() => {
-    onHighlightChange(highlightedIndex);
-  }, [highlightedIndex, onHighlightChange]);
 
   return (
     <Form.Control

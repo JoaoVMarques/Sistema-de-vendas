@@ -1,3 +1,3 @@
-export * from './productsDisplay';
-export * from './searchBar';
-export * from './shoppingCart';
+export * from './ProductsDisplay';
+export * from './SearchBar';
+export * from './ShoppingCart';

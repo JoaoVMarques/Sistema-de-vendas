@@ -1,5 +1,5 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { ProductType } from '../types/products';
+import { ProductType } from '../types/Products';
 import '../../../styles/styles.css';
 import { useEffect, useRef } from 'react';
 
@@ -31,9 +31,11 @@ export function ProductsDisplay({ products, onSelect, highlightedIndex }: produc
               active={ highlightedIndex === index }
               onClick={ () => onSelect(product) }
               key={ product.id }
-              ref={ index === highlightedIndex ? activeItemRef : null }>
+              ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }
+            >
               { product.name }
             </ListGroup.Item>;
+
           })
         }
       </ListGroup>
