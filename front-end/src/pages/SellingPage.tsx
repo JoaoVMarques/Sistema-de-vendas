@@ -1,5 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { SearchBar, ProductsDisplay, ShoppingCart, useSelling } from '../features/selling';
+import '../styles/styles.css';
 
 function SellingPage() {
   const {
@@ -18,30 +19,30 @@ function SellingPage() {
   } = useSelling();
 
   return (
-    <Container className="mt-2">
-      <Row>
-        <SearchBar
-          onSearch={ handleSearch }
-          setHighlightedIndex={ setHighlightedIndex }
-          highlightedIndex={ highlightedIndex }
-          onEnter={ onEnter }
-          input={ searchbarInput }
-          resultsCount={ availableProducts.length }
-          setInput={ setSearchbarInput }
-        />
-
-        <Col className="mt-1">
-          <ProductsDisplay
-            products={ availableProducts }
+    <div className="selling-page-bg">
+      <Container>
+        <Row>
+          <SearchBar
+            onSearch={ handleSearch }
             setHighlightedIndex={ setHighlightedIndex }
             highlightedIndex={ highlightedIndex }
-            onSelect={ clickOnProduct }
+            onEnter={ onEnter }
+            input={ searchbarInput }
+            resultsCount={ availableProducts.length }
+            setInput={ setSearchbarInput }
           />
-        </Col>
-
-        <ShoppingCart removeProduct={ removeProduct } selectedProducts={ selectedProducts } />
-      </Row>
-    </Container>
+          <Col className="mt-1">
+            <ProductsDisplay
+              products={ availableProducts }
+              setHighlightedIndex={ setHighlightedIndex }
+              highlightedIndex={ highlightedIndex }
+              onSelect={ clickOnProduct }
+            />
+          </Col>
+          <ShoppingCart removeProduct={ removeProduct } selectedProducts={ selectedProducts } />
+        </Row>
+      </Container>
+    </div>
   );
 }
 
