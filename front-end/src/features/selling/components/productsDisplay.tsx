@@ -7,9 +7,13 @@ interface productsDisplayProps {
   products: ProductType[];
   onSelect: (product: ProductType) => void;
   highlightedIndex: number;
+  setHighlightedIndex: (index: number) => void;
 }
 
-export function ProductsDisplay({ products, onSelect, highlightedIndex }: productsDisplayProps) {
+export function ProductsDisplay({ products,
+  onSelect,
+  highlightedIndex,
+  setHighlightedIndex }: productsDisplayProps) {
   const activeItemRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
@@ -29,6 +33,7 @@ export function ProductsDisplay({ products, onSelect, highlightedIndex }: produc
               action
               className="cursor-pointer"
               active={ highlightedIndex === index }
+              onMouseEnter={ () => setHighlightedIndex(index) }
               onClick={ () => onSelect(product) }
               key={ product.id }
               ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }

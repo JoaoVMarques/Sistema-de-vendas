@@ -32,6 +32,7 @@ function SellingPage() {
         <Col className="mt-1">
           <ProductsDisplay
             products={ availableProducts }
+            setHighlightedIndex={ setHighlightedIndex }
             highlightedIndex={ highlightedIndex }
             onSelect={ clickOnProduct }
           />
