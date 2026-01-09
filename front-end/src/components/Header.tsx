@@ -7,6 +7,7 @@ import { House,
   HouseFill,
   Briefcase,
   BriefcaseFill } from 'react-bootstrap-icons';
+import { NavLink } from 'react-router';
 
 interface productsDisplayProps {
   SelectedPage: string
@@ -22,17 +23,17 @@ export function Header({ SelectedPage }: productsDisplayProps) {
     if (SelectedPage === sectionName) {
       return (
         <span className="text-info">
-          <SelectedIcon className="ms-2 header-icon text-info" size={ 20 } />
+          <SelectedIcon className="mx-2 header-icon text-info" size={ 20 } />
           { headerText }
         </span>
       );
     }
-
+    const path = `/${sectionName}`;
     return (
-      <span>
-        <NotSelectedIcon className="header-icon" size={ 20 } />
+      <NavLink className="navlink-item" to={ path }>
+        <NotSelectedIcon className="mx-2 header-icon" size={ 20 } />
         { headerText }
-      </span>
+      </NavLink>
     );
   };
 

@@ -28,3 +28,8 @@
 .header-icon {
   vertical-align: -4px
 }
+
+.navlink-item, .active {
+  color: black;
+  text-decoration: none;
+}
