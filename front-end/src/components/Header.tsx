@@ -31,7 +31,7 @@ export function Header({ SelectedPage }: productsDisplayProps) {
     const path = `/${sectionName}`;
     return (
       <NavLink className="navlink-item" to={ path }>
-        <NotSelectedIcon className="mx-2 header-icon" size={ 20 } />
+        <NotSelectedIcon className="me-2 header-icon" size={ 20 } />
         { headerText }
       </NavLink>
     );
