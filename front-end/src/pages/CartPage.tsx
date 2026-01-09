@@ -3,7 +3,7 @@ import { SearchBar, ProductsDisplay, ShoppingCart, useSelling } from '../feature
 import '../styles/styles.css';
 import { Header } from '../components/Header';
 
-function SellingPage() {
+export function CartPage() {
   const {
     availableProducts,
     selectedProducts,
@@ -59,5 +59,3 @@ function SellingPage() {
     </div>
   );
 }
-
-export default SellingPage;
