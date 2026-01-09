@@ -14,7 +14,7 @@ export function ShoppingCart({ selectedProducts,
   handleQuantityChange }: productsDisplayProps) {
   const totalPrice = useMemo(() => {
     return selectedProducts.reduce((acc, product) => {
-      return acc + product.price;
+      return acc + (product.price * product.quantity);
     }, 0);
   }, [selectedProducts]);
 

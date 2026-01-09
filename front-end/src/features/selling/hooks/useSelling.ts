@@ -63,7 +63,7 @@ export function useSelling() {
   };
 
   const ChangeProductQuantity = (productId: number, newQuantity: number) => {
-    if (newQuantity < 1) {return;}
+    if (newQuantity < 1 || Number.isNaN(newQuantity) ) {return;}
 
     setCartItems((prevItems) =>
       prevItems.map((item) =>

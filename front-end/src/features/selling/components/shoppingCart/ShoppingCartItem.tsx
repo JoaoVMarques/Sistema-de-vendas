@@ -23,7 +23,7 @@ export function ShoppingCartItem({ product,
           onChange={ (e) => handleQuantityChange(product.id, parseInt(e.target.value)) }
         /></Col>
         <Col md={ 3 }>
-          <span>R$ { product.price }</span>
+          <span>R$ { product.price * product.quantity }</span>
         </Col>
         <Col md={ 2 } className="text-end">
           <Button className="btn-danger" onClick={ () => removeProduct(product.id) }>
