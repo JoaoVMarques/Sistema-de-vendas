@@ -8,9 +8,11 @@ interface productsDisplayProps {
   highlightedIndex: number;
   searchBarInput: string;
   setHighlightedIndex: (index: number) => void;
+  onSearch: () => void;
 }
 
 export function ProductsDisplay({ searchBarInput,
+  onSearch,
   onSelect,
   highlightedIndex,
   setHighlightedIndex }: productsDisplayProps) {
@@ -44,7 +46,7 @@ export function ProductsDisplay({ searchBarInput,
                 className="cursor-pointer"
                 active={ highlightedIndex === index }
                 onMouseEnter={ () => setHighlightedIndex(index) }
-                onClick={ () => onSelect(product.id) }
+                onClick={ () => { onSelect(product.id); onSearch(); } }
                 key={ product.id }
                 ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }
               >

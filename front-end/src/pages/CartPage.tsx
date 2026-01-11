@@ -12,6 +12,7 @@ export function CartPage() {
     onKeyPress,
     highlightedIndex,
     setHighlightedIndex,
+    onSearch,
   } = useSearch();
 
   const {
@@ -41,6 +42,7 @@ export function CartPage() {
               <div className="mb-3">
                 <ProductsDisplay
                   searchBarInput={ input }
+                  onSearch={ onSearch }
                   setHighlightedIndex={ setHighlightedIndex }
                   highlightedIndex={ highlightedIndex }
                   onSelect={ setCartProduct }

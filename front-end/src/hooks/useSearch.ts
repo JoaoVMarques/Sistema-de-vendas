@@ -22,12 +22,10 @@ export function useSearch() {
     setSearchResults(result);
   };
 
-  const onSearch = (selectedProductIndex: number, callback: () => void) => {
-    if (selectedProductIndex > 0) {
-      callback();
-      setSearchResults([]);
-      setHighlightedIndex(0);
-    }
+  const onSearch = () => {
+    setSearchResults([]);
+    setInput('');
+    setHighlightedIndex(0);
   };
 
   const onKeyPress = (pressedKey: React.KeyboardEvent) => {
