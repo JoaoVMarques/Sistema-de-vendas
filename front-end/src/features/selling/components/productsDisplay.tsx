@@ -1,20 +1,23 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { ProductType } from '../types/Products';
 import '../../../styles/styles.css';
 import { useEffect, useRef } from 'react';
+import { useProducts } from '../../../hooks/queries/useProducts';
 
 interface productsDisplayProps {
-  products: ProductType[];
   onSelect: (productId: number) => void;
   highlightedIndex: number;
   setHighlightedIndex: (index: number) => void;
 }
 
-export function ProductsDisplay({ products,
-  onSelect,
+export function ProductsDisplay({ onSelect,
   highlightedIndex,
   setHighlightedIndex }: productsDisplayProps) {
+
   const activeItemRef = useRef<HTMLLIElement | null>(null);
+  const {
+    data: products,
+    isLoading,
+  } = useProducts();
 
   useEffect(() => {
     activeItemRef.current?.scrollIntoView({
@@ -23,11 +26,17 @@ export function ProductsDisplay({ products,
     });
   }, [highlightedIndex]);
 
+  if (isLoading) {
+    return <Container>
+      <h1>Loading</h1>
+    </Container>;
+  }
+
   return (
     <Container>
       <ListGroup as="ul" className="products-list">
         {
-          products.map((product, index) => {
+          products?.map((product, index) => {
             return <ListGroup.Item
               as="li"
               action

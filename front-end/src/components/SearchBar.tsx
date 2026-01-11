@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 interface SearchBarProps {
   input: string
   setInput: (value: string) => void;
-  onKeyPress: (event: React.KeyboardEvent) => void;
+  onKeyPress: (keyPress: React.KeyboardEvent) => void;
 }
 
 export function SearchBar({ input, setInput, onKeyPress } : SearchBarProps) {

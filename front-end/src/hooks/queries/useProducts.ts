@@ -10,6 +10,6 @@ export function useProducts() {
 
   return {
     data: query.data,
-    loading: query.isLoading,
+    isLoading: query.isLoading,
   };
 }

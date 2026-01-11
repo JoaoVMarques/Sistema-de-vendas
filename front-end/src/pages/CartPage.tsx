@@ -1,22 +1,25 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { SearchBar, ProductsDisplay, ShoppingCart, useSelling } from '../features/selling';
+import { ProductsDisplay, ShoppingCart, useCart } from '../features/selling';
 import '../styles/styles.css';
 import { Header } from '../components/Header';
+import { SearchBar } from '../components/SearchBar';
+import { useSearch } from '../hooks/useSearch';
 
 export function CartPage() {
   const {
-    availableProducts,
-    selectedProducts,
+    input,
+    setInput,
+    onKeyPress,
     highlightedIndex,
-    searchbarInput,
     setHighlightedIndex,
-    setSearchbarInput,
-    handleSearch,
+  } = useSearch();
+
+  const {
     removeProduct,
-    onEnter,
-    SetCartProduct,
-    ChangeProductQuantity,
-  } = useSelling();
+    changeProductQuantity,
+    setCartProduct,
+    selectedProduct,
+  } = useCart();
 
   return (
     <div className="selling-page-bg" style={ { minHeight: '100vh' } }>
@@ -29,28 +32,23 @@ export function CartPage() {
           <Col md={ 10 }>
             <div className="p-3 bg-white border-bottom shadow">
               <SearchBar
-                onSearch={ handleSearch }
-                setHighlightedIndex={ setHighlightedIndex }
-                highlightedIndex={ highlightedIndex }
-                onEnter={ onEnter }
-                input={ searchbarInput }
-                resultsCount={ availableProducts.length }
-                setInput={ setSearchbarInput }
+                input={ input }
+                setInput={ setInput }
+                onKeyPress={ onKeyPress }
               />
             </div>
             <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
-                  products={ availableProducts }
                   setHighlightedIndex={ setHighlightedIndex }
                   highlightedIndex={ highlightedIndex }
-                  onSelect={ SetCartProduct }
+                  onSelect={ setCartProduct }
                 />
               </div>
               <ShoppingCart
-                handleQuantityChange={ ChangeProductQuantity }
+                handleQuantityChange={ changeProductQuantity }
                 removeProduct={ removeProduct }
-                selectedProducts={ selectedProducts }
+                selectedProducts={ selectedProduct }
               />
             </Container>
           </Col>
