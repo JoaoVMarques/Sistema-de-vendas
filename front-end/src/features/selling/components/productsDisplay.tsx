@@ -6,10 +6,12 @@ import { useProducts } from '../../../hooks/queries/useProducts';
 interface productsDisplayProps {
   onSelect: (productId: number) => void;
   highlightedIndex: number;
+  searchBarInput: string;
   setHighlightedIndex: (index: number) => void;
 }
 
-export function ProductsDisplay({ onSelect,
+export function ProductsDisplay({ searchBarInput,
+  onSelect,
   highlightedIndex,
   setHighlightedIndex }: productsDisplayProps) {
 
@@ -26,33 +28,32 @@ export function ProductsDisplay({ onSelect,
     });
   }, [highlightedIndex]);
 
-  if (isLoading) {
+  if (isLoading && searchBarInput) {
     return <Container>
       <h1>Loading</h1>
     </Container>;
+  } else if (searchBarInput) {
+    return (
+      <Container>
+        <ListGroup as="ul" className="products-list">
+          {
+            products?.map((product, index) => {
+              return <ListGroup.Item
+                as="li"
+                action
+                className="cursor-pointer"
+                active={ highlightedIndex === index }
+                onMouseEnter={ () => setHighlightedIndex(index) }
+                onClick={ () => onSelect(product.id) }
+                key={ product.id }
+                ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }
+              >
+                { product.name }
+              </ListGroup.Item>;
+            })
+          }
+        </ListGroup>
+      </Container>
+    );
   }
-
-  return (
-    <Container>
-      <ListGroup as="ul" className="products-list">
-        {
-          products?.map((product, index) => {
-            return <ListGroup.Item
-              as="li"
-              action
-              className="cursor-pointer"
-              active={ highlightedIndex === index }
-              onMouseEnter={ () => setHighlightedIndex(index) }
-              onClick={ () => onSelect(product.id) }
-              key={ product.id }
-              ref={ index === highlightedIndex && index >= 0 ? activeItemRef : null }
-            >
-              { product.name }
-            </ListGroup.Item>;
-
-          })
-        }
-      </ListGroup>
-    </Container>
-  );
 }

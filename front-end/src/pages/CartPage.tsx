@@ -40,6 +40,7 @@ export function CartPage() {
             <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
+                  searchBarInput={ input }
                   setHighlightedIndex={ setHighlightedIndex }
                   highlightedIndex={ highlightedIndex }
                   onSelect={ setCartProduct }
