@@ -28,20 +28,25 @@ export function InventoryPage() {
   };
 
   return (
-    <Container fluid className="p-0">
-      <Row className="g-0">
-        <Col md={ 2 }
-          className="p-0 shadow">
-          <Header SelectedPage={ 'inventory' } />
-        </Col>
-        <Col>
-          <SearchBar
-            input={ input }
-            handleSearch={ handleSearch }
-            onKeyPress={ handleSearchBarKeyPress }
-          />
-        </Col>
-      </Row>
-    </Container>
+    <div className="selling-page-bg">
+      <Container fluid className="p-0">
+        <Row className="g-0">
+          <Col md={ 2 }
+            className="p-0 shadow">
+            <Header SelectedPage={ 'inventory' } />
+          </Col>
+          <Col md={ 10 }>
+            <SearchBar
+              input={ input }
+              handleSearch={ handleSearch }
+              onKeyPress={ handleSearchBarKeyPress }
+            />
+            <Container className="p-4">
+              teste
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
