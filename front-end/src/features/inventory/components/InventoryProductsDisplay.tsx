@@ -23,9 +23,10 @@ export function InventoryProductsDisplay() {
       <ListGroup className="mb-0">
         <ListGroup.Item className="border-0 p-3 bg-transparent">
           <Row>
-            <Col md={ 8 }><span className="fw-bold">Produto</span></Col>
+            <Col md={ 7 }><span className="fw-bold">Produto</span></Col>
             <Col md={ 2 }><span className="fw-bold">Preço</span></Col>
             <Col md={ 2 }><span className="fw-bold">Estoque</span></Col>
+            <Col md={ 1 } />
           </Row>
         </ListGroup.Item>
       </ListGroup>

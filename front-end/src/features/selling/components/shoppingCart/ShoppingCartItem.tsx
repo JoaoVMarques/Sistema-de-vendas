@@ -13,9 +13,7 @@ export function ShoppingCartItem({ product,
   return (
     <ListGroup.Item as="li" variant="primary" action>
       <Row className="align-items-center">
-        <Col md={ 4 }>
-          <span>{ product.name }</span>
-        </Col>
+        <Col md={ 4 }><span>{ product.name }</span></Col>
         <Col md={ 3 }><Form.Control
           type="number"
           className="w-75"
@@ -23,9 +21,7 @@ export function ShoppingCartItem({ product,
           value={ product.quantity }
           onChange={ (e) => handleQuantityChange(product.id, parseInt(e.target.value)) }
         /></Col>
-        <Col md={ 3 }>
-          <span>R$ { product.price * product.quantity }</span>
-        </Col>
+        <Col md={ 3 }><span>R$ { product.price * product.quantity }</span></Col>
         <Col md={ 2 } className="text-end">
           <Button className="btn-danger" onClick={ () => removeProduct(product.id) }>
             X
