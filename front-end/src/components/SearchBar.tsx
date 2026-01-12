@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 export function SearchBar({ input, handleSearch, onKeyPress } : SearchBarProps) {
   return (
-    <>
+    <div className="p-3 bg-white border-bottom shadow">
       <Form.Control
         type="search"
         placeholder="pesquise pelo produto"
@@ -17,6 +17,6 @@ export function SearchBar({ input, handleSearch, onKeyPress } : SearchBarProps) 
         onKeyDown={ (event) => onKeyPress(event) }
         className="me-2"
       />
-    </>
+    </div>
   );
 }

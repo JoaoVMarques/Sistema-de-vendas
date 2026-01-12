@@ -50,13 +50,11 @@ export function CartPage() {
             <Header SelectedPage={ 'cart' } />
           </Col>
           <Col md={ 10 }>
-            <div className="p-3 bg-white border-bottom shadow">
-              <SearchBar
-                input={ input }
-                handleSearch={ handleSearch }
-                onKeyPress={ handleSearchBarKeyPress }
-              />
-            </div>
+            <SearchBar
+              input={ input }
+              handleSearch={ handleSearch }
+              onKeyPress={ handleSearchBarKeyPress }
+            />
             <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
