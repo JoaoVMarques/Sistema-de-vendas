@@ -3,7 +3,7 @@ import { SelectedProductType } from '../../types/Products';
 import { ShoppingCartItem } from './ShoppingCartItem';
 import { useMemo } from 'react';
 
-export interface productsDisplayProps {
+export interface props {
   selectedProducts: SelectedProductType[];
   removeProduct: (productId: number) => void;
   handleQuantityChange: (ProductId: number, ProductQuantity: number) => void;
@@ -11,7 +11,7 @@ export interface productsDisplayProps {
 
 export function ShoppingCart({ selectedProducts,
   removeProduct,
-  handleQuantityChange }: productsDisplayProps) {
+  handleQuantityChange }: props) {
 
   const totalPrice = useMemo(() => {
     return selectedProducts.reduce((acc, product) => {
@@ -29,9 +29,15 @@ export function ShoppingCart({ selectedProducts,
             <ListGroup.Item className="border-0 p-3 bg-transparent">
               <Row>
                 <Col md={ 4 }><span className="fw-bold">Produto</span></Col>
-                <Col md={ 3 }><span className="fw-bold">Quantidade</span></Col>
-                <Col md={ 3 }><span className="fw-bold">Preço</span></Col>
-                <Col md={ 2 } />
+                <Col md={ 3 } className="text-center">
+                  <span className="fw-bold">Quantidade</span>
+                </Col>
+                <Col md={ 3 } className="text-center">
+                  <span className="fw-bold">Preço</span>
+                </Col>
+                <Col md={ 2 } className="text-end">
+                  <span className="fw-bold">Remover</span>
+                </Col>
               </Row>
             </ListGroup.Item>
           </ListGroup>

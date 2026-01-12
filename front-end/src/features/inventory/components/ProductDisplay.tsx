@@ -5,16 +5,21 @@ import { PencilFill } from 'react-bootstrap-icons';
 interface productDisplayProps {
   product: ProductType
 }
-
 export function ProductDisplay({ product }: productDisplayProps) {
   return (
     <ListGroup.Item as="li">
       <Row className="align-items-center">
-        <Col md={ 7 }><span>{ product.name }</span></Col>
-        <Col md={ 2 }><span>R$ { product.price }</span></Col>
-        <Col md={ 2 }><span>{ product.stock }</span></Col>
-        <Col md={ 1 }>
-          <Button className="btn-info" onClick={ () => console.log('Edit') }>
+        <Col md={ 6 }><span>{ product.name }</span></Col>
+        <Col md={ 2 } className="text-center"><span>R$ { product.price }</span></Col>
+        <Col md={ 2 } className="text-center"><span>{ product.stock }</span></Col>
+        <Col md={ 2 } className="text-end">
+          <Button
+            variant="outline-primary"
+            size="sm"
+            className="border-0"
+            onClick={ () => console.log('Edit') }
+            title="Remover item"
+          >
             <PencilFill />
           </Button>
         </Col>
