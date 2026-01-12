@@ -26,11 +26,14 @@ export function useSearch() {
     setHighlightedIndex(0);
   };
 
-  const onKeyPress = (event: React.KeyboardEvent, maxIndex: number) => {
+  const onKeyPress = (event: React.KeyboardEvent,
+    maxIndex: number,
+    enterCallback: (...args: unknown[]) => void) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       onSearch();
       setHighlightedIndex(0);
+      enterCallback();
     }
 
     if (event.key === 'ArrowDown') {

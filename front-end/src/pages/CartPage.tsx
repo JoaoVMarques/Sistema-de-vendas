@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import { Header } from '../components/Header';
 import { SearchBar } from '../components/SearchBar';
 import { useSearch } from '../hooks/useSearch';
+import { useMemo } from 'react';
 
 export function CartPage() {
   const {
@@ -24,14 +25,28 @@ export function CartPage() {
     removeCartItemsFromList,
   } = useCart();
 
-  const availableProducts = removeCartItemsFromList(searchResults);
+  const availableProducts = useMemo(() => {
+    return removeCartItemsFromList(searchResults) || [];
+  }, [searchResults, removeCartItemsFromList]);
+
+  const handleSearchBarKeyPress = (event: React.KeyboardEvent) => {
+    const productTarget = availableProducts[highlightedIndex];
+    onKeyPress(
+      event,
+      availableProducts.length,
+      () => {
+        if (productTarget) {
+          setCartProduct(productTarget.id);
+        }
+      },
+    );
+  };
 
   return (
-    <div className="selling-page-bg" style={ { minHeight: '100vh' } }>
+    <div className="selling-page-bg min-vh-100">
       <Container fluid className="p-0">
         <Row className="g-0">
-          <Col md={ 2 }
-            className="p-0 shadow">
+          <Col md={ 2 } className="p-0 shadow">
             <Header SelectedPage={ 'cart' } />
           </Col>
           <Col md={ 10 }>
@@ -39,8 +54,7 @@ export function CartPage() {
               <SearchBar
                 input={ input }
                 handleSearch={ handleSearch }
-                onKeyPress={ onKeyPress }
-                maxIndex={ availableProducts.length }
+                onKeyPress={ handleSearchBarKeyPress }
               />
             </div>
             <Container className="p-4">

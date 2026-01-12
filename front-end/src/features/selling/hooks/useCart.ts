@@ -35,7 +35,12 @@ export function useCart() {
   };
 
   const setCartProduct = (productId: number) => {
-    setCartItems((prev) => [...prev, { id: productId, quantity: 1}]);
+    setCartItems((prev) => {
+      const exists = prev.some(item => item.id === productId);
+      if (exists) {return prev;}
+
+      return [...prev, { id: productId, quantity: 1 }];
+    });
   };
 
   return {
