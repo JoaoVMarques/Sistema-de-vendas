@@ -1,5 +1,6 @@
 import { ListGroup, Row } from 'react-bootstrap';
 import { useProducts } from '../../../hooks/queries/useProducts';
+import { ProductDisplay } from './ProductDisplay';
 
 export function InventoryProductsDisplay() {
   const {
@@ -22,9 +23,7 @@ export function InventoryProductsDisplay() {
       <ListGroup as="ul">
         {
           data?.map((product) => {
-            return <ListGroup.Item
-              as="li"
-              key={ product.id }>{ product.name }</ListGroup.Item>;
+            return <ProductDisplay key={ product.id } product={ product } />;
           })
         }
       </ListGroup>
