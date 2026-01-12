@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import { SearchBar } from '../components/SearchBar';
 import { useSearch } from '../hooks/useSearch';
 import { useProducts } from '../hooks/queries/useProducts';
+import { InventoryProductsDisplay } from '../features/inventory';
 
 export function InventoryPage() {
   const { data: productsData } = useProducts();
@@ -42,7 +43,7 @@ export function InventoryPage() {
               onKeyPress={ handleSearchBarKeyPress }
             />
             <Container className="p-4">
-              teste
+              <InventoryProductsDisplay />
             </Container>
           </Col>
         </Row>
