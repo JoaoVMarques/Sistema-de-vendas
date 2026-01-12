@@ -12,6 +12,7 @@ export interface productsDisplayProps {
 export function ShoppingCart({ selectedProducts,
   removeProduct,
   handleQuantityChange }: productsDisplayProps) {
+
   const totalPrice = useMemo(() => {
     return selectedProducts.reduce((acc, product) => {
       return acc + (product.price * product.quantity);
@@ -23,15 +24,19 @@ export function ShoppingCart({ selectedProducts,
       <Row className="mt-3 justify-content-between align-items-start">
         <Col md={ 7 } className="white-container p-3 rounded shadow">
           <h4>Carrinho</h4>
-          <div className="px-3 mb-2">
-            <Row className="justify-content-between mb-2">
-              <Col md={ 4 }><span>Produto</span></Col>
-              <Col md={ 3 }><span>Quantidade</span></Col>
-              <Col md={ 3 }><span>Preço</span></Col>
-              <Col md={ 2 } />
-            </Row>
-          </div>
-          <ListGroup as="ul">
+
+          <ListGroup className="mb-0">
+            <ListGroup.Item className="border-0 p-3 bg-transparent">
+              <Row>
+                <Col md={ 4 }><span className="fw-bold">Produto</span></Col>
+                <Col md={ 3 }><span className="fw-bold">Quantidade</span></Col>
+                <Col md={ 3 }><span className="fw-bold">Preço</span></Col>
+                <Col md={ 2 } />
+              </Row>
+            </ListGroup.Item>
+          </ListGroup>
+
+          <ListGroup as="ul" variant="flush">
             {
               selectedProducts.map((product) => {
                 return <ShoppingCartItem
@@ -48,20 +53,21 @@ export function ShoppingCart({ selectedProducts,
           <Row>
             <h4>Visão Geral</h4>
           </Row>
-          <Row className="mt-2">
+          <Row className="mt-2 align-items-center">
             <Col>
               <span className="text-secondary">Preço Total:</span>
             </Col>
-            <Col>
-              <span className="fw-bold"> R$ { totalPrice } </span>
+            <Col className="text-end">
+              <span className="fw-bold fs-5"> R$ { totalPrice.toFixed(2) } </span>
             </Col>
           </Row>
-          <Row>
-            <hr className="mx-2 size w-75"/>
+          <Row className="mt-3">
+            <Col>
+              <hr className="m-0"/>
+            </Col>
           </Row>
         </Col>
       </Row>
     </Container>
   );
 }
-

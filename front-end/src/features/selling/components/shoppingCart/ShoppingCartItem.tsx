@@ -18,6 +18,7 @@ export function ShoppingCartItem({ product,
         </Col>
         <Col md={ 3 }><Form.Control
           type="number"
+          className="w-75"
           min="1"
           value={ product.quantity }
           onChange={ (e) => handleQuantityChange(product.id, parseInt(e.target.value)) }
