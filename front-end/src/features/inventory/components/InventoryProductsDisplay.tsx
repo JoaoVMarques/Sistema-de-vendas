@@ -1,12 +1,18 @@
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { useProducts } from '../../../hooks/queries/useProducts';
 import { ProductDisplay } from './ProductDisplay';
+import { useProductEditor } from '../hooks/useProductEditor';
 
 export function InventoryProductsDisplay() {
   const {
     data,
     isLoading,
   } = useProducts();
+
+  const {
+    editingProductId,
+    setEditingProductId,
+  } = useProductEditor();
 
   if (isLoading) {
     return (
@@ -33,7 +39,10 @@ export function InventoryProductsDisplay() {
       <ListGroup as="ul">
         {
           data?.map((product) => {
-            return <ProductDisplay key={ product.id } product={ product } />;
+            return <ProductDisplay
+              setEditingId={ setEditingProductId }
+              key={ product.id }
+              product={ product } />;
           })
         }
       </ListGroup>

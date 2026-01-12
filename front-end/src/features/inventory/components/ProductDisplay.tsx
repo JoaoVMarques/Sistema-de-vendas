@@ -4,9 +4,10 @@ import { PencilFill } from 'react-bootstrap-icons';
 
 interface props {
   product: ProductType
+  setEditingId: (productId: number) => void
 }
 
-export function ProductDisplay({ product }: props) {
+export function ProductDisplay({ product, setEditingId }: props) {
   const formattedPrice = product.price.toFixed(2).replace('.', ',');
 
   return (
@@ -26,7 +27,7 @@ export function ProductDisplay({ product }: props) {
             variant="outline-primary"
             size="sm"
             className="border-0"
-            onClick={ () => console.log('Edit') }
+            onClick={ () => setEditingId(product.id) }
             title="Editar item"
           >
             <PencilFill size={ 18 } />
