@@ -1,39 +1,70 @@
-import { Button, Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap';
 import { ProductType } from '../../selling/types/Products';
-import { PencilFill } from 'react-bootstrap-icons';
+import { FloppyFill } from 'react-bootstrap-icons';
+import { useState } from 'react';
 
 interface props {
   product: ProductType
-  setEditingId: (productId: number) => void
+  saveButton: (product: ProductType) => void
 }
 
-export function ProductDisplayEditing({ product, setEditingId }: props) {
-  const formattedPrice = product.price.toFixed(2).replace('.', ',');
+export function ProductDisplayEditing({ product, saveButton }: props) {
+  const [name, setName] = useState(product.name);
+  const [price, setPrice] = useState(product.price);
+  const [stock, setStock] = useState(product.stock);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const newProduct = {
+      name,
+      price,
+      stock,
+      id: product.id,
+    };
+    saveButton(newProduct);
+  };
 
   return (
     <ListGroup.Item as="li">
-      <Row className="align-items-center">
-        <Col md={ 6 }>
-          <span className="fw-semibold text-dark">{ product.name } (Editando)</span>
-        </Col>
-        <Col md={ 2 } className="text-center">
-          <span className="fw-bold text-success">R$ { formattedPrice }</span>
-        </Col>
-        <Col md={ 2 } className="text-center">
-          <span className="fw-bold text-secondary">{ product.stock }</span>
-        </Col>
-        <Col md={ 2 } className="text-end">
-          <Button
-            variant="outline-primary"
-            size="sm"
-            className="border-0"
-            onClick={ () => setEditingId(product.id) }
-            title="Editar item"
-          >
-            <PencilFill size={ 18 } />
-          </Button>
-        </Col>
-      </Row>
+      <Form onSubmit={ handleSubmit }>
+        <Row className="align-items-center">
+          <Col md={ 6 }>
+            <Form.Control
+              type="text"
+              value={ name }
+              className="border-secondary"
+              onChange={ (event) => setName(event.target.value) }
+            />
+          </Col>
+          <Col md={ 2 } className="text-center">
+            <Form.Control
+              type="number"
+              value={ price }
+              className="text-center border-secondary"
+              onChange={ (event) => setPrice(Number(event.target.value)) }
+            />
+          </Col>
+          <Col md={ 2 } className="text-center">
+            <Form.Control
+              type="number"
+              value={ stock }
+              className="text-center border-secondary"
+              onChange={ (event) => setStock(Number(event.target.value)) }
+            />
+          </Col>
+          <Col md={ 2 } className="text-end">
+            <Button
+              type="submit"
+              variant="outline-primary"
+              size="sm"
+              className="border-0"
+              title="Editar item"
+            >
+              <FloppyFill size={ 18 } />
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </ListGroup.Item>
   );
 }

@@ -13,21 +13,25 @@ export function InventoryProductsDisplay() {
   const {
     editingProductId,
     setEditingProductId,
+    saveEditedProduct,
   } = useProductEditor();
 
-  const editingProduct = () => {
-    return data?.map((product) => {
-      if (product.id === editingProductId) {
-        return <ProductDisplayEditing
-          setEditingId={ setEditingProductId }
+  const renderProducts = () => {
+    return data?.map((product) =>
+      product.id === editingProductId ? (
+        <ProductDisplayEditing
           key={ product.id }
-          product={ product } />;
-      }
-      return <ProductDisplay
-        setEditingId={ setEditingProductId }
-        key={ product.id }
-        product={ product } />;
-    });
+          product={ product }
+          saveButton={ saveEditedProduct }
+        />
+      ) : (
+        <ProductDisplay
+          key={ product.id }
+          product={ product }
+          setEditingId={ setEditingProductId }
+        />
+      ),
+    );
   };
 
   if (isLoading) {
@@ -54,7 +58,7 @@ export function InventoryProductsDisplay() {
       </ListGroup>
       <ListGroup as="ul">
         {
-          editingProduct()
+          renderProducts()
         }
       </ListGroup>
     </Row>
