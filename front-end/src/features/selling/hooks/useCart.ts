@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useProducts } from '../../../hooks/queries/useProducts';
-import { CartItemState } from '../types/Products';
+import { CartItemState, ProductType } from '../types/Products';
 
 export function useCart() {
   const [cartItems, setCartItems] = useState<CartItemState[]>([]);
   const { data: productsData } = useProducts();
 
-  const availableProducts = () => {
-    if (!productsData) { return; }
-    return productsData.filter((product) => !cartItems.some((item) => item.id === product.id));
+  const removeCartItemsFromList = (productList: ProductType[]) => {
+    if (!productList) { return []; }
+    const cartIds = new Set(cartItems.map((item) => item.id));
+    return productList.filter((product) => !cartIds.has(product.id));
   };
 
   const selectedProduct = cartItems.flatMap((cartItem) => {
@@ -38,7 +39,7 @@ export function useCart() {
   };
 
   return {
-    availableProducts,
+    removeCartItemsFromList,
     selectedProduct,
     changeProductQuantity,
     removeProduct,

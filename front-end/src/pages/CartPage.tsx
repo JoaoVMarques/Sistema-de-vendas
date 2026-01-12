@@ -21,8 +21,10 @@ export function CartPage() {
     changeProductQuantity,
     setCartProduct,
     selectedProduct,
-    availableProducts,
+    removeCartItemsFromList,
   } = useCart();
+
+  const availableProducts = removeCartItemsFromList(searchResults);
 
   return (
     <div className="selling-page-bg" style={ { minHeight: '100vh' } }>
@@ -44,7 +46,7 @@ export function CartPage() {
             <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
-                  searchedProducts={ searchResults }
+                  searchedProducts={ availableProducts }
                   searchBarInput={ input }
                   onSearch={ onSearch }
                   setHighlightedIndex={ setHighlightedIndex }
