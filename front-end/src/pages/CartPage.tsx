@@ -8,11 +8,12 @@ import { useSearch } from '../hooks/useSearch';
 export function CartPage() {
   const {
     input,
-    setInput,
+    handleSearch,
     onKeyPress,
     highlightedIndex,
     setHighlightedIndex,
     onSearch,
+    searchResults,
   } = useSearch();
 
   const {
@@ -20,6 +21,7 @@ export function CartPage() {
     changeProductQuantity,
     setCartProduct,
     selectedProduct,
+    availableProducts,
   } = useCart();
 
   return (
@@ -34,13 +36,15 @@ export function CartPage() {
             <div className="p-3 bg-white border-bottom shadow">
               <SearchBar
                 input={ input }
-                setInput={ setInput }
+                handleSearch={ handleSearch }
                 onKeyPress={ onKeyPress }
+                maxIndex={ availableProducts.length }
               />
             </div>
             <Container className="p-4">
               <div className="mb-3">
                 <ProductsDisplay
+                  searchedProducts={ searchResults }
                   searchBarInput={ input }
                   onSearch={ onSearch }
                   setHighlightedIndex={ setHighlightedIndex }

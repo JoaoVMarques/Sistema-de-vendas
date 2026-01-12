@@ -2,19 +2,20 @@ import { Form } from 'react-bootstrap';
 
 interface SearchBarProps {
   input: string
-  setInput: (value: string) => void;
-  onKeyPress: (keyPress: React.KeyboardEvent) => void;
+  handleSearch: (value: string) => void;
+  onKeyPress: (event: React.KeyboardEvent, maxIndex: number) => void;
+  maxIndex: number
 }
 
-export function SearchBar({ input, setInput, onKeyPress } : SearchBarProps) {
+export function SearchBar({ input, handleSearch, onKeyPress, maxIndex } : SearchBarProps) {
   return (
     <>
       <Form.Control
         type="search"
         placeholder="pesquise pelo produto"
         value={ input }
-        onChange={ (e) => setInput(e.target.value) }
-        onKeyDown={ (e) => onKeyPress(e) }
+        onChange={ (e) => handleSearch(e.target.value) }
+        onKeyDown={ (event) => onKeyPress(event, maxIndex) }
         className="me-2"
       />
     </>

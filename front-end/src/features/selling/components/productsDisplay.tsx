@@ -1,28 +1,26 @@
 import { Container, ListGroup } from 'react-bootstrap';
 import '../../../styles/styles.css';
 import { useEffect, useRef } from 'react';
-import { useProducts } from '../../../hooks/queries/useProducts';
+import { ProductType } from '../types/Products';
 
 interface productsDisplayProps {
   onSelect: (productId: number) => void;
+  searchedProducts: ProductType[] | undefined
   highlightedIndex: number;
   searchBarInput: string;
   setHighlightedIndex: (index: number) => void;
   onSearch: () => void;
 }
 
-export function ProductsDisplay({ searchBarInput,
+export function ProductsDisplay({
+  searchBarInput,
+  searchedProducts,
   onSearch,
   onSelect,
   highlightedIndex,
   setHighlightedIndex }: productsDisplayProps) {
 
   const activeItemRef = useRef<HTMLLIElement | null>(null);
-  const {
-    data: products,
-    isLoading,
-  } = useProducts();
-
   useEffect(() => {
     activeItemRef.current?.scrollIntoView({
       block: 'nearest',
@@ -30,16 +28,14 @@ export function ProductsDisplay({ searchBarInput,
     });
   }, [highlightedIndex]);
 
-  if (isLoading && searchBarInput) {
-    return <Container>
-      <h1>Loading</h1>
-    </Container>;
+  if (!searchedProducts) {
+    return;
   } else if (searchBarInput) {
     return (
       <Container>
         <ListGroup as="ul" className="products-list">
           {
-            products?.map((product, index) => {
+            searchedProducts?.map((product, index) => {
               return <ListGroup.Item
                 as="li"
                 action

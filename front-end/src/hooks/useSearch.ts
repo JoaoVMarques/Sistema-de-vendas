@@ -9,16 +9,14 @@ export function useSearch() {
   const { data: productsData } = useProducts();
 
   const handleSearch = (value: string) => {
-    if (!value.trim()) {
-      setSearchResults([]);
-      return;
-    }
+    setInput(value);
 
     if (!productsData) { return; }
 
     const result = productsData.filter((product) =>
       product.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()),
     );
+
     setSearchResults(result);
   };
 
@@ -28,8 +26,22 @@ export function useSearch() {
     setHighlightedIndex(0);
   };
 
-  const onKeyPress = (pressedKey: React.KeyboardEvent) => {
-    console.log(pressedKey);
+  const onKeyPress = (event: React.KeyboardEvent, maxIndex: number) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      onSearch();
+      setHighlightedIndex(0);
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setHighlightedIndex(Math.min(highlightedIndex + 1, maxIndex - 1));
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setHighlightedIndex(Math.max(highlightedIndex - 1, 0));
+    }
   };
 
   return {
