@@ -14,7 +14,6 @@ Start-Process -NoNewWindow -Wait -WorkingDirectory $frontEndPath -FilePath "powe
 Write-Host "`n--- BACK-END ---" -ForegroundColor Cyan
 if (-not (Test-Path $venvPath)) {
     Write-Host ".venv nao encontrado. Criando ambiente virtual..."
-    # Cria o venv
     Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath "powershell" -ArgumentList "-Command python -m venv .venv"
 } else {
     Write-Host ".venv ja existe. Pulando criacao."
@@ -22,12 +21,21 @@ if (-not (Test-Path $venvPath)) {
 
 # 3. Back-end (Instalação das Libs)
 if (Test-Path $venvPython) {
-    Write-Host "Atualizando pip e instalando dependencias (FastAPI, Uvicorn)..."
-    Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath $venvPython -ArgumentList "-m pip install --upgrade pip", "&&", "$venvPython -m pip install -r ./requirements.txt"
-} else {
-    Write-Host "ERRO CRITICO: Nao foi possivel encontrar o Python do venv." -ForegroundColor Red
-    Write-Host "Tentando usar o Python global (nao recomendado)..."
-    Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath "powershell" -ArgumentList "-Command python -m pip install -r ./requirements.txt"
+    Write-Host "Atualizando pip..."
+    Start-Process -NoNewWindow -Wait `
+        -FilePath $venvPython `
+        -WorkingDirectory $backEndPath `
+        -ArgumentList "-m", "pip", "install", "--upgrade", "pip"
+
+    Write-Host "Instalando dependencias do requirements.txt..."
+    Start-Process -NoNewWindow -Wait `
+        -FilePath $venvPython `
+        -WorkingDirectory $backEndPath `
+        -ArgumentList "-m", "pip", "install", "-r", "requirements.txt"
+}
+else {
+    Write-Host "ERRO CRITICO: Python do venv nao encontrado." -ForegroundColor Red
+    exit 1
 }
 
 Write-Host "`nInstalacao concluida com sucesso!" -ForegroundColor Green
