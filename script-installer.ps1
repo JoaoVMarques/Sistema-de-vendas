@@ -5,22 +5,30 @@ $backEndPath  = Join-Path $scriptPath "back-end"
 $venvPath     = Join-Path $backEndPath ".venv"
 $venvPython   = Join-Path $venvPath "Scripts\python.exe"
 
-Write-Host "Instalando dependencias do front-end (npm install)..."
+# 1. Front-end
+Write-Host "--- FRONT-END ---" -ForegroundColor Cyan
+Write-Host "Instalando dependencias (npm install)..."
 Start-Process -NoNewWindow -Wait -WorkingDirectory $frontEndPath -FilePath "powershell" -ArgumentList "-Command npm install"
 
+# 2. Back-end (Ambiente Virtual)
+Write-Host "`n--- BACK-END ---" -ForegroundColor Cyan
 if (-not (Test-Path $venvPath)) {
     Write-Host ".venv nao encontrado. Criando ambiente virtual..."
+    # Cria o venv
     Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath "powershell" -ArgumentList "-Command python -m venv .venv"
 } else {
     Write-Host ".venv ja existe. Pulando criacao."
 }
 
+# 3. Back-end (Instalação das Libs)
 if (Test-Path $venvPython) {
-    Write-Host "Instalando dependencias do back-end com o Python do venv..."
-    Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath $venvPython -ArgumentList "-m pip install -r ./requirements.txt"
+    Write-Host "Atualizando pip e instalando dependencias (FastAPI, Uvicorn)..."
+    Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath $venvPython -ArgumentList "-m pip install --upgrade pip", "&&", "$venvPython -m pip install -r ./requirements.txt"
 } else {
-    Write-Host "Nao foi possivel encontrar o Python do venv. Tentando usar o Python global..."
+    Write-Host "ERRO CRITICO: Nao foi possivel encontrar o Python do venv." -ForegroundColor Red
+    Write-Host "Tentando usar o Python global (nao recomendado)..."
     Start-Process -NoNewWindow -Wait -WorkingDirectory $backEndPath -FilePath "powershell" -ArgumentList "-Command python -m pip install -r ./requirements.txt"
 }
 
-Write-Host "Instalacao concluida. Para iniciar os servidores, use: ./script.ps1"
+Write-Host "`nInstalacao concluida com sucesso!" -ForegroundColor Green
+Write-Host "Para iniciar, rode: ./script.ps1"
