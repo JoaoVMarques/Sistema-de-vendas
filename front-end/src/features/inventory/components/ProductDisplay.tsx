@@ -18,7 +18,7 @@ export function ProductDisplay({ product, setEditingId }: props) {
             plaintext
             readOnly
             defaultValue={ product.name }
-            className="fw-semibold text-dark px-0"
+            className="fw-semibold text-dark px-0 cursor-default"
           />
         </Col>
 
@@ -27,7 +27,7 @@ export function ProductDisplay({ product, setEditingId }: props) {
             plaintext
             readOnly
             defaultValue={ `R$ ${formattedPrice}` }
-            className="fw-bold text-success text-center"
+            className="fw-bold text-success text-center cursor-default"
           />
         </Col>
 
@@ -36,7 +36,7 @@ export function ProductDisplay({ product, setEditingId }: props) {
             plaintext
             readOnly
             defaultValue={ product.stock }
-            className="fw-bold text-secondary text-center"
+            className="fw-bold text-secondary text-center cursor-default"
           />
         </Col>
 
