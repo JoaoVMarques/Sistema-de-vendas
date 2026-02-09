@@ -9,5 +9,7 @@ router = APIRouter(prefix="/products", tags=["products"])
 async def get_products():
     docs = await products_collection.find().to_list(100)
     for d in docs:
-        d["_id"] = str(d["_id"])
+        d["id"] = str(d["_id"])
+        del d["_id"]
+
     return docs
