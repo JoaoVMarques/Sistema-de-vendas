@@ -1,5 +1,5 @@
 export interface ProductType {
-  id: number;
+  id: string;
   name: string;
   price: number;
   stock: number;
@@ -10,7 +10,7 @@ export interface SelectedProductType extends ProductType {
 }
 
 export interface CartItemState {
-  id: number;
+  id: string;
   quantity: number;
 }
 
