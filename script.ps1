@@ -4,21 +4,21 @@ $frontEndPath = Join-Path $scriptPath "front-end"
 $backEndPath  = Join-Path $scriptPath "back-end"
 $venvPython   = Join-Path $backEndPath ".venv\Scripts\python.exe"
 
-Write-Host "Iniciando Front-end..." -ForegroundColor Green
+# 1. Front-end
+Write-Host "Abrindo nova janela para o Front-end..." -ForegroundColor Cyan
 Start-Process `
-  -NoNewWindow `
   -WorkingDirectory $frontEndPath `
   -FilePath "cmd.exe" `
   -ArgumentList "/c", "npm run dev"
 
+# Espera um pouco para não abrir tudo junto
 Start-Sleep -Seconds 2
 
-Write-Host "Iniciando Back-end (FastAPI)..." -ForegroundColor Green
+# 2. Back-end
+Write-Host "Abrindo nova janela para o Back-end..." -ForegroundColor Cyan
 Start-Process `
-  -NoNewWindow `
   -WorkingDirectory $backEndPath `
-  -FilePath $venvPython `
-  -ArgumentList "-m", "uvicorn", "main:app", "--reload"
+  -FilePath "powershell" `
+  -ArgumentList "-NoExit", "-Command `& '$venvPython' -m uvicorn app.main:app --reload"
 
-Write-Host "`nFront-end e Back-end iniciados." -ForegroundColor Cyan
-Write-Host "Use CTRL+C ou feche os processos manualmente."
+Write-Host "Servidores iniciados em janelas separadas!" -ForegroundColor Green
